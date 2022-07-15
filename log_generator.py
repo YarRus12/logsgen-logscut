@@ -26,10 +26,10 @@ def logs_generator(target: str, amount: str):
         with open(file_name, 'w', encoding='utf-8') as log_file:
             log_file.write(f'{date}{time}\n')
             log_file.write(f'{module} {random_text(30)} \n')
-            log_file.write(f'{random_text(30)} \n')
-            log_file.write(f'{random_text(30)} \n')
+            log_file.write(f'{random_text(300)} \n')
+            log_file.write(f'{random_text(100)} \n')
             log_file.write(f'{number}\n')
-            log_file.write(f'{random_text(30)} \n')
+            log_file.write(f'{random_text(340)} \n')
         files_num += 1
 
 def rename(path, ext):
