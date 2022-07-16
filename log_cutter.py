@@ -5,12 +5,19 @@ import random
 from pathlib import Path
 import re
 
+utrno = 105757775
+date_time = datetime.datetime.now()
+date = f'{date_time.date()}'
+
 #path = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
-path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
+#target = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "copies")
+src_path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
+target_folder = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "copies", f"{utrno}_{date}")
 
 def finder(path, target):
     list_of_files = []
     for i in os.listdir(path):
+        #Сюда нужно добавить обработчик патерна, окончания файла лог
         with open(Path(path, i), 'r') as file:
             for line in file:
                 result = re.findall(target, line)
@@ -19,5 +26,15 @@ def finder(path, target):
                     list_of_files.append(i)
     return list_of_files
 
-result = finder(path, '105757775')
-print(result)
+list_of_files = finder(src_path, f'{utrno}')
+print(list_of_files)
+if not os.path.exists(target_folder):
+    os.makedirs(target_folder, exist_ok=True)
+
+for i in list_of_files:
+    src_file = Path(src_path, i)
+    target_file = Path(target_folder,i)
+    shutil.copy(src_file, target_file)
+
+
+"""Если парамметры поиска будут отличаться, то можно будет переконфигурировать в ООП"""

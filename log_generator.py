@@ -4,6 +4,8 @@ import datetime
 import random
 from pathlib import Path
 
+"""Нужно исправить лишнюю точку в переименовании и выполнить журналирование"""
+
 date_time = datetime.datetime.now()
 date = f'{date_time.date()}'
 time = f'{date_time.time()}'[:8]
