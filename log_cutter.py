@@ -5,14 +5,14 @@ import random
 from pathlib import Path
 import re
 
-utrno = 105757775
+utrno = 7773414119
 date_time = datetime.datetime.now()
 date = f'{date_time.date()}'
 
-#path = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
-#target = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "copies")
-src_path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
-target_folder = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "copies", f"{utrno}_{date}")
+src_path = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs") # Windows
+target_folder = Path("C:\\", "Users", "OMEN","Desktop","Folder", "somefiles", "files", "copies", f"{utrno}_{date}") #Windows
+#src_path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs") #Linux
+#target_folder = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "copies", f"{utrno}_{date}") #Linux
 
 def finder(path, target):
     list_of_files = []

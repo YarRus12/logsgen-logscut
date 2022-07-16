@@ -10,8 +10,8 @@ date_time = datetime.datetime.now()
 date = f'{date_time.date()}'
 time = f'{date_time.time()}'[:8]
 
-#path = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
-path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
+path = Path("C:\\", "Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
+#path = Path("/Users","warlock","Desktop","Users", "OMEN", "Desktop", "Folder", "somefiles", "files", "logs")
 #print(path)
 #print(os.path.dirname(os.path.abspath(__file__)))
 def random_text(lenght):
@@ -46,5 +46,5 @@ def rename(path, ext):
             os.rename(Path(path,i), Path(path,name))
 
 numbers = logs_generator(path, 1000)
-rename(str(path), '.log')
+rename(str(path), 'log')
 print(random.choice(numbers))
