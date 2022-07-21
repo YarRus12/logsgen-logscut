@@ -51,6 +51,9 @@ print(f'Файлы скопированы в папку {target_folder}')
 
 def cutter(content, patern, border = BORDER):
     """Центральная функция определяющая блок лога, который необходимо извлечь"""
+    """ ПРОБЛЕМА ФУНКЦИЯ ДОЛЖНА ПРИНИМАТЬ В СЕБЯ МАСКУ UTRNNO, PATER, ORGDEV, а также 
+    И возвращать контент и индекс нижней гринцы блока"""
+
     #Ищем индекс патерна в тексте
     index_patern = content.find(str(patern))
     #Ищем индекс первой нижней границы после патерна
@@ -69,7 +72,7 @@ def result_writter(path, files, patern):
                     content = file.read()
                     # Вызываем функцию нарезчика
                     report.write(f'Record from {i}')
-                    result = cutter(content, patern)
+                    result, lust_index = cutter(content, patern)
                     report.write(result)
                     report.write(f'END OF FILE {i}')
                     report.write(f'{BORDER}\n\n')
