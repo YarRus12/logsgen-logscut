@@ -1,5 +1,11 @@
 #! usr/bin/python
 
+"""Необходимо доделатьЖ
+    1. Рекурсивное обращение к функции cutter в функции writter для поиска всех вхождений в текст лога
+    2. Обработка отсутствия результатов поиска в папке
+    3. Реализация поиска холодных логов в архивах
+    """
+
 """Вводный блок"""
 
 import os
@@ -21,8 +27,9 @@ seach_models = input(f'Логи каких модулей необходимо �
 BORDER = '*************************************************************************************\n'
 
 
-def grep(src_folder, object_name, module):
-    """Блок взаимодействия с ОС"""
+def grep(src_folder:str, object_name:str, module: str) -> list:
+    """Функция выполняет команду grep в указанной папке и
+    возвращает список полных имен файлов, в которых найдено вхождение патерна"""
     if module == 'ALL':
         module_name = ''
     else: module_name = module
@@ -35,12 +42,13 @@ def grep(src_folder, object_name, module):
     print(f'Выборка составила {len(full_filesnames)}')
     return full_filesnames
 
-def logs_copy(src_folder, target_folder, full_filesnames):
+def logs_copy(src_folder: str, target_folder: str, full_filesnames: list) -> list:
+    """Функция проверяет расширение файлов с логами, приводит в читаемый формат
+    И выполняет копирование в указанную папку"""
     #Создаем папку для копий файлов
     if not os.path.exists(target_folder):
         os.makedirs(target_folder, exist_ok=True)
         print(f'Создана папка {target_folder}')
-    #
     # У некоторых файлов нестандартное (цифровое) окончание наименования,
     # поэтому для корректной работы необходимо перенести цифровую часть имени файла
     # и чтобы не перебирать список два раза результирующие файлы копируем в новую папку
@@ -71,7 +79,6 @@ def cutter(content, patern, border = BORDER):
     index_up_border = content[index_patern-1::-1].find(border)
     return content[index_patern-index_up_border:index_patern+index_down_border+len(border)-1]
 
-
 def result_writter(path, files, object_type, object_name):
     """Функция записи в результирующий файл"""
     with open(Path(path, f'{object_type}_{object_name}_logs_report.txt'), 'w', encoding='utf-8') as report:
@@ -90,6 +97,6 @@ def result_writter(path, files, object_type, object_name):
 
 full_filesnames = []
 for i in len(module):
-    full_filesnames.extend(grep(src_folder, object_name, i))
+    full_filesnames.extend(grep(src_folder, str(object_name), i))
 end_of_file_name = logs_copy(src_folder, target_folder, full_filesnames)
 result_writter(target_folder, end_of_file_name, object_type, object_name)
