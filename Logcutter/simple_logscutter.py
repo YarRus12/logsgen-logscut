@@ -31,6 +31,10 @@ print(list_of_files)
 if not os.path.exists(target_folder):
     os.makedirs(target_folder, exist_ok=True)
 
+
+
+
+
 for i in list_of_files:
     src_file = Path(src_path, i)
     target_file = Path(target_folder,i)
