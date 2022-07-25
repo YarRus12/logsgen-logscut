@@ -13,11 +13,22 @@ date = f'{date_time.date()}'
 src_folder = Path('..', '..')
 #Задаем путь и имя до конечной папки, куда будет выведен результат и копии лог-файлов
 target_folder = Path('..', '..')
+patterns = ['nwint','time'] #Все модули, которые могут быть исследованы
+object_type = input(f'По какому критерию будет осуществляться поиск логов? {patterns}')
+object_name = int(input(f'Введите номер {object_type}'))
 BORDER = '*************************************************************************************\n'
 
-"""Инфраструктурный блок"""
-patern = int(input())
+"""Блок взаимодействия с ОС"""
 # Ищем файлы с содержанием патерна с помощью grep
+
+
+
+def logs_copy(src_folder, target_folder):
+    if not os.path.exists(target_folder):
+        os.makedirs(target_folder, exist_ok=True)
+    print(f'Создана папка {target_folder}')
+
+
 args = [f'grep -l {patern} {src_folder}/*']
 grep = sub.Popen(args, shell = True, stdout = sub.PIPE)
 print(f'Дана команда grep для поиска {patern} в содержании файла {src_folder}')
