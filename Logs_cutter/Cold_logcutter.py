@@ -6,6 +6,9 @@ from pathlib import Path
 import subprocess as sub
 import tarfile
 
+date_time = datetime.datetime.now()
+date = f'{date_time.date()}'
+
 direction = {}
 node_id =''
 object_type = ''
